@@ -1,26 +1,20 @@
-
-# {
-#     "current_game": string,
-#     "error_count": int,
-#     "is_game_over": boolean,
-#     "is_game_won": boolean,
-#     "tip": string,
-#     "total_letters": int
-# }
-
-
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify, session, make_response
 from flask_cors import CORS, cross_origin
-from flask_session import Session
 from hangman import Game
 from secrets import token_bytes
 import pickle
 
 app = Flask(__name__)
 app.secret_key = str(token_bytes(16))
+
+# PARTE SUPER IMPORTANTE
+# essa config faz com que o fetch entenda que é outro site
+app.config["SESSION_COOKIE_SECURE"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = 'None'
+
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = 'filesystem'
-Session(app)
+# Session(app)
 CORS(app)
 
 def get_default_return(game: Game) -> dict:
@@ -35,6 +29,9 @@ def get_game() -> Game:
 
 def store_game_in_session(game: Game) -> None:
     session['game'] = pickle.dumps(game)
+    session.modified = True
+
+
 
 @app.route('/', methods=['GET'])
 @cross_origin(supports_credentials=True)
@@ -42,11 +39,13 @@ def root():
     game = Game()
     store_game_in_session(game)
     print(session)
-    
-    return jsonify(get_default_return(game))
+    resp = make_response(jsonify(get_default_return(game)))
+    resp.set_cookie('cross-site-cookie', 'bar', samesite='None', secure=True)
+
+    return resp
 
 
-@app.route('/guess', methods=['GET'])
+@app.route('/guess', methods=['POST'])
 @cross_origin(supports_credentials=True)
 def guess():
     print(session)
@@ -63,5 +62,10 @@ def guess():
 
     return get_default_return(game)
 
+@app.route('/teste', methods=['GET'])
+@cross_origin(supports_credentials=True)
+def test():
+    print(session)
+    return 'session'
 
-app.run(host='localhost', port=5000)
+app.run(host='localhost', port=5000, debug=True)

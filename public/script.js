@@ -17,10 +17,18 @@ function showBodyParts(count) {
     }
 }
 
+async function startGame() {
+    const resp = await fetch(apiUrl, {credentials: 'include', mode: 'cors'})
+    const data = await resp.json()
+    
+    wordDiv.innerText = data.current_game
+    alert(`a palavra é um(a) ${data.tip}`)
+}
+
 async function sendGuess(guess) {
     try {
         const resp = await fetch(apiUrl + `guess?guess_letter=${guess}`,
-        {credentials: 'include', method: 'POST'})
+        {method: 'POST', credentials: 'include', mode: 'cors'})
         const data = await resp.json()
 
         wordDiv.innerText = data.current_game
@@ -30,12 +38,4 @@ async function sendGuess(guess) {
     }
 
     guessText.value = ''
-}
-
-async function startGame() {
-    const resp = await fetch(apiUrl, {credentials: 'include'})
-    const data = await resp.json()
-    
-    wordDiv.innerText = data.current_game
-    alert(`a palavra é um(a) ${data.tip}`)
 }
