@@ -1,6 +1,7 @@
 const wordDiv = document.querySelector('.word')
 const guessText = document.querySelector('.guess-text')
 const bodyParts = document.querySelectorAll('.pessoa div')
+const wrongLetterText = document.querySelector('.wrong-letters')
 const apiUrl = 'http://localhost:5000/'
 
 startGame()
@@ -22,6 +23,8 @@ async function startGame() {
     const data = await resp.json()
     
     wordDiv.innerText = data.current_game
+
+    document.querySelector('.tip').innerText = `Dica: ${data.tip}`
     alert(`a palavra é um(a) ${data.tip}`)
 }
 
@@ -32,6 +35,11 @@ async function sendGuess(guess) {
         const data = await resp.json()
 
         wordDiv.innerText = data.current_game
+
+        if (data.error_count > wrongLetterText.innerText.length) {
+            if (!wrongLetterText.innerText.includes(guessText.value)) wrongLetterText.innerText += guessText.value
+        }
+
         showBodyParts(data.error_count)
         if(data.is_game_won) alert('VOCE GANHOU!')
         if(data.is_game_over) showGameOverMessage();

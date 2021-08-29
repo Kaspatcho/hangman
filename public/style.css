@@ -48,6 +48,26 @@ body {
     padding: 5px 10px;
 }
 
+.wrong-letter-container {
+    position: absolute;
+    top: -20%;
+
+    display: flex;
+    align-items: center;
+}
+
+.tip-container {
+    position: absolute;
+    top: -35%;
+
+    display: flex;
+    align-items: center;
+}
+
+.wrong-letters {
+    margin-left: 0.2rem;
+}
+
 .forca {
     display: flex;
 }
