@@ -11,7 +11,8 @@ class Game:
         self.tip, self.word = self._get_random_word()
         self.current_game = '_' * len(self.word)
         self.guess = None
-        self._replace_current_game(' ')
+        for char in self.word:
+            if not char.isalpha(): self._replace_current_game(char)
 
     def update(self) -> None:
         self._replace_current_game()
