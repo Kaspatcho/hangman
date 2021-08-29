@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    --height: 20rem;
+    --width: 12rem;
+    --background: #fff;
+}
+
+body {
+    background: var(--background);
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+}
+
+.forca {
+    display: flex;
+}
+
+.base {
+    width: var(--width);
+    height: var(--height);
+
+    border-left: 4px solid black;
+    border-top: 4px solid black;
+}
+
+.corda {
+    width: var(--width);
+    height: calc(var(--height) / 3);
+
+    border-left: 3px solid #666;
+}
+
+.pessoa {
+    height: 9rem;
+
+    position: relative;
+    right: 50%;
+
+    display: flex;
+    justify-items: start;
+}
+
+.cabeca {
+    width: 50px;
+    height: 50px;
+
+    background: var(--background);
+
+    border-radius: 100%;
+    border: 4px solid black;
+}
+
+.corpo {
+    width: 50px;
+    height: 80px;
+
+    position: absolute;
+    left: 50%;
+    top: 40%;
+
+    border-left: 4px solid black;
+}
+
+.braco-esquerdo {
+    height: 60px;
+
+    position: absolute;
+    left: 15%;
+    top: 40%;
+    transform: rotate(45deg);
+
+    border-left: 4px solid black;
+}
+
+.braco-direito {
+    height: 60px;
+
+    position: absolute;
+    right: 10%;
+    top: 40%;
+    transform: rotate(315deg);
+
+    border-left: 4px solid black;
+}
+
+.perna-direita {
+    height: 60px;
+
+    position: absolute;
+    right: 9%;
+    top: 89%;
+    transform: rotate(315deg);
+
+    border-left: 4px solid black;
+}
+
+.perna-esquerda {
+    height: 60px;
+
+    position: absolute;
+    left: 15%;
+    top: 89%;
+    transform: rotate(45deg);
+
+    border-left: 4px solid black;
+}
