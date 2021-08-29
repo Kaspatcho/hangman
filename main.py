@@ -2,9 +2,8 @@
 from hangman import Game
 
 game = Game()
-total_letters = len(game.word) - game.word.count(' ')
 
-print(f'Dica: a palavra tem {total_letters} letras e é um(a) {game.tip}')
+print(f'Dica: a palavra tem {game.total_letters} letras e é um(a) {game.tip}')
 
 while True:
     guess = input('Chute: ')

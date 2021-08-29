@@ -14,6 +14,8 @@ class Game:
         for char in self.word:
             if not char.isalpha(): self._replace_current_game(char)
 
+        self.total_letters = len(self.word) - self.word.count(' ')
+
     def update(self) -> None:
         self._replace_current_game()
 
