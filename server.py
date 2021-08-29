@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, session, make_response
+from flask import Flask, request, jsonify, session
 from flask_cors import CORS, cross_origin
 from hangman import Game
 from secrets import token_bytes
@@ -14,7 +14,6 @@ app.config["SESSION_COOKIE_SAMESITE"] = 'None'
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = 'filesystem'
-# Session(app)
 CORS(app)
 
 def get_default_return(game: Game) -> dict:
