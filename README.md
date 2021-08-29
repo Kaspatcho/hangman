@@ -1,7 +1,7 @@
 # Hangman
 Jogo da forca feito com flask e js
 
-![Exemplo](https://cdn.discordapp.com/attachments/746454307163078718/881667034784612402/unknown.png "jogo de site")
+![Exemplo](https://cdn.discordapp.com/attachments/746454307163078718/881674051830026290/unknown.png "jogo de site")
 
 <br><br><br>
 
