@@ -38,11 +38,8 @@ def store_game_in_session(game: Game) -> None:
 def root():
     game = Game()
     store_game_in_session(game)
-    print(session)
-    resp = make_response(jsonify(get_default_return(game)))
-    resp.set_cookie('cross-site-cookie', 'bar', samesite='None', secure=True)
 
-    return resp
+    return jsonify(get_default_return(game))
 
 
 @app.route('/guess', methods=['POST'])
@@ -62,10 +59,16 @@ def guess():
 
     return get_default_return(game)
 
-@app.route('/teste', methods=['GET'])
+@app.route('/gameover', methods=['POST'])
 @cross_origin(supports_credentials=True)
-def test():
-    print(session)
-    return 'session'
+def gameover():
+    game = get_game()
+    if game is None: return 'game not started', 404
+
+    if game.check_game_over():
+        final_message = f'Voce perdeu! a palavra era {game.word}'
+        return jsonify({'message': final_message})
+    
+    return 'O jogo ainda nao acabou!', 400
 
 app.run(host='localhost', port=5000, debug=True)

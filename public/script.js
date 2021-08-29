@@ -33,9 +33,19 @@ async function sendGuess(guess) {
 
         wordDiv.innerText = data.current_game
         showBodyParts(data.error_count)
+        if(data.is_game_won) alert('VOCE GANHOU!')
+        if(data.is_game_over) showGameOverMessage();
     } catch (error) {
         console.error(error)
     }
 
     guessText.value = ''
+}
+
+async function showGameOverMessage() {
+    const resp = await fetch(apiUrl + 'gameover',
+        {method: 'POST', credentials: 'include', mode: 'cors'})
+
+    const data = await resp.json()
+    alert(data.message)
 }
