@@ -24,6 +24,30 @@ body {
     align-items: center;
 }
 
+.word-container {
+    position: absolute;
+
+    bottom: -1rem;
+    left: 3rem;
+
+    display: flex;
+    width: max-content;
+}
+
+.guess-field {
+    position: absolute;
+    bottom: 0;
+    left: 70%;
+}
+
+.guess-text {
+    border: 1px solid black;
+    border-radius: 3px;
+    background: #eee;
+
+    padding: 5px 10px;
+}
+
 .forca {
     display: flex;
 }
@@ -116,4 +140,8 @@ body {
     transform: rotate(45deg);
 
     border-left: 4px solid black;
+}
+
+.hidden {
+    opacity: 0;
 }
