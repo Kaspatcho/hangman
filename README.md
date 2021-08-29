@@ -3,6 +3,10 @@ Jogo da forca feito com flask e js
 
 ![Exemplo](https://cdn.discordapp.com/attachments/746454307163078718/881667034784612402/unknown.png "jogo de site")
 
+<br><br><br>
+
+# Versão de terminal
+![Exemplo](https://cdn.discordapp.com/attachments/746454307163078718/880289141378646049/unknown.png "jogo terminal")
 
 ## retorno API flask
 ``` python
