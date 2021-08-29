@@ -1,5 +1,0 @@
-GET http://127.0.0.1:5000/
-
-###
-
-GET http://127.0.0.1:5000/guess?guess_letter=m
