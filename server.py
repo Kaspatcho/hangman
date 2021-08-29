@@ -14,7 +14,9 @@ def get_default_return(game: Game) -> dict:
     'is_game_over': game.check_game_over(), 'is_game_won': game.check_game_win()}
 
 def get_game() -> Game:
-    return pickle.loads(session.get('game', None))
+    session_game = session.get('game', None)
+    if session_game is None: return session_game
+    return pickle.loads(session_game)
 
 def store_game_in_session(game: Game) -> None:
     session['game'] = pickle.dumps(game)
