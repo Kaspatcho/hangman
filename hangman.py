@@ -3,7 +3,7 @@ import numpy as np
 from typing import Tuple
 from word_list import WORDS
 
-ERROR_LIMIT = 5
+ERROR_LIMIT = 6
 
 class Game:
     def __init__(self) -> None:
